@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 def mc_main(file_name, env, num_episodes, num_states_per_episode, discount_factor, precision_for_discretization):
 
     f= open( file_name + ".run","w+")
-    f.write("discritization: %d; episodes %d; max time per episode %d; discount factor: %f\n" % (precision_for_discretization, num_episodes, num_states_per_episode, discount_factor))
+    f.write("strat: monte; discritization: %d; episodes %d; max time per episode %d; discount factor: %f\n" % (precision_for_discretization, num_episodes, num_states_per_episode, discount_factor))
     f.write("episode, time\n")
     state_count = {}
 
@@ -75,7 +75,7 @@ def mc_main(file_name, env, num_episodes, num_states_per_episode, discount_facto
 
     f.close()                
     plt.plot(x_axis, y_axis, 'ro')
-    plt.title('Monte Carlo - Custom Reward - Discount {:0.2f}'.format(discount_factor))
+    plt.title('Monte Carlo - Basic Reward - Discount {:0.2f}'.format(discount_factor))
     plt.ylabel('Time To Win Episode')
     plt.xlabel('Number Episodes Trained')
     plt.savefig(file_name + ".png")

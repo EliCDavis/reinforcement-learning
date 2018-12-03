@@ -51,3 +51,13 @@ Since it was an improvement I also tried lowering it to one signifigant digit we
 ![Monte Carlo](https://i.imgur.com/HqfrH5q.png)
 
 In 10,000 iterations there was 157 solved episodes.
+
+## Monte Carlo: Default Reward, 2 numbers of precision, Different Discount Factors.
+
+Next I tried to implement a discount factor so that each reward for each state is discounted by the current time step so that reward_at_timestep = reward*(discout^timestep). A discount of 1 would end up having no discount at all, and a discount of 0 would mean that no reward is ever given. After trying this with multiple discount factors we actually ended up having an improvement with a discount of 0.8 solving 169 episodes over 10,000 iterations.
+
+![Monte Carlo](https://i.imgur.com/UCZFhAv.png)
+
+0.8 seems to be the sweet spot, as any more or any less seems to degrade performance.
+
+![Monte Carlo Discount](https://i.imgur.com/97Y9JR1.png)

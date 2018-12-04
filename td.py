@@ -1,8 +1,8 @@
 from util import *
 import matplotlib.pyplot as plt
 
-def new_reward(orentation):
-    return orentation[0] / -1
+# def new_reward(orentation):
+#     return orentation[0] / -1
 
 def inc_state_count(state, state_count):
     if str(state) not in state_count:
@@ -52,7 +52,9 @@ def td_main(file_name, env, num_episodes, num_states_per_episode, discount_facto
             
             # Play out scene...
             observation, reward, done, info = env.step(action)
-            nr = new_reward(observation)
+            # nr = new_reward(observation)
+            # nr = reward
+            nr = reward if reward < 0 else 1
 
             discretized_state = discretize(observation, precision_for_discretization)
 
@@ -71,12 +73,13 @@ def td_main(file_name, env, num_episodes, num_states_per_episode, discount_facto
                 x_axis.append(i_episode)
                 y_axis.append(t)
                 f.flush()
+                # print(observation)
+                # env.render()
                 break
 
             # Update values for next iteration...
             action = action_prime
             sa_hash = sa_hash_prime
-
 
             # if done:
             #     print("Episode finished after {} timesteps".format(t+1))
@@ -85,7 +88,7 @@ def td_main(file_name, env, num_episodes, num_states_per_episode, discount_facto
 
     f.close()                
     plt.plot(x_axis, y_axis, 'ro')
-    plt.title('TD - Custom Reward - Discount {:0.2f}'.format(discount_factor))
+    plt.title('TD - -1/1 - Discount {:0.2f}'.format(discount_factor))
     plt.ylabel('Time To Win Episode')
     plt.xlabel('Number Episodes Trained')
     plt.savefig(file_name + ".png")

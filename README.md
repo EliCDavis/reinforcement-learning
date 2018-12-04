@@ -61,3 +61,15 @@ Next I tried to implement a discount factor so that each reward for each state i
 0.8 seems to be the sweet spot, as any more or any less seems to degrade performance.
 
 ![Monte Carlo Discount](https://i.imgur.com/97Y9JR1.png)
+
+## SARSA: -1/1 Reward, 0 numbers of precision
+
+After implementing SARSA it unfortuantly did not seem like it was doing any better than Monte Carlo. I first started to mess around with the discount factor and actually found increasing it from 0.8 to 0.99 improved training. The biggest thing that improved performance was dropping the degrees of precision used for discritizing the observation into different states. Dropping it from 2 to 1 gave a substantiail increase. However dropping it all the way to 0 actually ended up having us start to win every single game after a certain point! This is a very large difference from monte carlo, where it still hasn't solved a single episode after 10,000 iterations with 0 degrees of precision.
+
+![Sarsa Discount -11](https://i.imgur.com/8nUiBq9.png)
+
+After running it for 30,000 episodes the output of the data became kinda jumbled coming to 28,643 episodes solved, so I decided to redraw it plotting a pixel for every episode solved. The x axis is the current espiode and the y axis is how long it took. If you look at the diagram below you can kinda start to make out a trend that over time, the time to complete and episode goes down. At some point in the training, the agent began to solve every episode given to it.
+
+![Sarsa Discount a lot of em](https://i.imgur.com/fx6PVZb.png)
+
+In 10,000 iterations there was 9019 solved episodes.

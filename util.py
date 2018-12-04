@@ -21,12 +21,12 @@ def sample_action(state, state_count, Q, action_space):
     returns index of actions to take
     """
     num_actions = action_space.n 
-
     n0 = 100.0 
 
     epsilon = 0
     if str(state) in state_count:
         epsilon = n0 / (n0 + state_count[str(state)])
+
     greedy_chance = (epsilon / num_actions) + 1.0 - epsilon
     best_action = best_policy(state, Q, num_actions)
 

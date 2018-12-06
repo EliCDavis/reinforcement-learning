@@ -20,6 +20,7 @@ def sample_action(state, state_count, Q, action_space):
     
     returns index of actions to take
     """
+    print(dir(action_space))
     num_actions = action_space.n 
     n0 = 100.0 
 

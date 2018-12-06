@@ -2,6 +2,8 @@
 
 This repository aims to personally explore different reinforcement learning (RL) techniques implemented by hand to solve problems inside [Open AI's Gym](https://gym.openai.com). Lesson's learned from experimenting with different techniques will be documented. This repository should not be seen as a starting point for those wishing to learn about RL.
 
+For a summary of all results for different environments please check out the **acc.csv** file contained in the repository
+
 # Acrobat V1
 
 ## Monte Carlo: Default Reward, 3 numbers of precision
@@ -46,7 +48,7 @@ In 10,000 iterations there was 162 solved episodes.
 
 ## Monte Carlo: Default Reward, 1 numbers of precision
 
-Since it was an improvement I also tried lowering it to one signifigant digit we care about to see what the results would be. Unfortuantely it ended up decreasing in performance, so it looks as if 2 is the optimal number of digists to care about
+Since it was an improvement I also tried lowering it to one signifigant digit we care about to see what the results would be. Unfortunately it ended up decreasing in performance, so it looks as if 2 is the optimal number of digists to care about
 
 ![Monte Carlo](https://i.imgur.com/HqfrH5q.png)
 
@@ -64,7 +66,7 @@ Next I tried to implement a discount factor so that each reward for each state i
 
 ## SARSA: -1/1 Reward, 0 numbers of precision
 
-After implementing SARSA it unfortuantly did not seem like it was doing any better than Monte Carlo. I first started to mess around with the discount factor and actually found increasing it from 0.8 to 0.99 improved training. The biggest thing that improved performance was dropping the degrees of precision used for discritizing the observation into different states. Dropping it from 2 to 1 gave a substantiail increase. However dropping it all the way to 0 actually ended up having us start to win every single game after a certain point! This is a very large difference from monte carlo, where it still hasn't solved a single episode after 10,000 iterations with 0 degrees of precision.
+After implementing SARSA it unfortunately did not seem like it was doing any better than Monte Carlo. I first started to mess around with the discount factor and actually found increasing it from 0.8 to 0.99 improved training. The biggest thing that improved performance was dropping the degrees of precision used for discritizing the observation into different states. Dropping it from 2 to 1 gave a substantiail increase. However dropping it all the way to 0 actually ended up having us start to win every single game after a certain point! This is a very large difference from monte carlo, where it still hasn't solved a single episode after 10,000 iterations with 0 degrees of precision.
 
 ![Sarsa Discount -11](https://i.imgur.com/8nUiBq9.png)
 
@@ -73,3 +75,11 @@ After running it for 30,000 episodes the output of the data became kinda jumbled
 ![Sarsa Discount a lot of em](https://i.imgur.com/fx6PVZb.png)
 
 In 10,000 iterations there was 9019 solved episodes.
+
+## Q-Learning: Basic Reward, 0 numbers of precision
+
+No suprise that Q-Learning improved over SARSA. It did better in both time to converge, average time to complete episodes, and number of episodes completed.
+
+![Q-Learning Basic](https://i.imgur.com/jPwFULV.png)
+
+In 10,000 iterations, there was 9342 solved episodes.
